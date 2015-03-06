@@ -88,7 +88,7 @@ function edd_acquisition_methods_callback( $args ) {
 						'placeholder' => __( 'name-identifier', 'edd-acquisition-survey' )
 					) ); ?>
 				</td>
-				<td><span class="edd-acq-remove-method button-secondary"><?php _e( 'Remove Rate', 'edd' ); ?></span></td>
+				<td><span class="edd-acq-remove-method button-secondary"><?php _e( 'Remove Method', 'edd-acquisition-survey' ); ?></span></td>
 			</tr>
 			<?php endforeach; ?>
 		<?php else : ?>

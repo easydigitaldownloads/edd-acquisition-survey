@@ -54,6 +54,11 @@ add_action('edd_purchase_form_user_info', 'edd_acq_custom_checkout_fields');
 // check for errors with out custom fields
 function edd_acq_validate_custom_fields( $valid_data, $data ) {
 
+	$methods  = edd_acq_get_methods();
+	if ( empty( $methods ) ) {
+		return;
+	}
+
 	$required = edd_get_option( 'acq_require_response', false );
 	if ( $required && ( empty( $data['edd_acquisition_method'] ) || $data['edd_acquisition_method'] == '-1' ) ) {
 		// check for a phone number
