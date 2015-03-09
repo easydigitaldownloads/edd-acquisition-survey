@@ -72,7 +72,7 @@ function edd_acquisition_methods_callback( $args ) {
 				<th scope="col" class="edd-acq-drag"></th>
 				<th scope="col" class="edd-acq-name"><?php _e( 'Name', 'edd-acquisition-survey' ); ?></th>
 				<th scope="col" class="edd-acq-value"><?php _e( 'Value', 'edd-acquisition-survey' ); ?></th>
-				<th scope="col" class="edd-acq-remove"><?php _e( 'Remove', 'edd' ); ?></th>
+				<th scope="col" class="edd-acq-remove"></th>
 			</tr>
 		</thead>
 		<?php if( ! empty( $methods ) ) : ?>
@@ -95,7 +95,7 @@ function edd_acquisition_methods_callback( $args ) {
 						'placeholder' => __( 'name-identifier', 'edd-acquisition-survey' )
 					) ); ?>
 				</td>
-				<td><span class="edd-acq-remove-method button-secondary"><?php _e( 'Remove Method', 'edd-acquisition-survey' ); ?></span></td>
+				<td><span class="edd-acq-remove-method button-secondary"><?php _e( 'Remove', 'edd-acquisition-survey' ); ?></span></td>
 			</tr>
 			<?php endforeach; ?>
 		<?php else : ?>
@@ -115,7 +115,7 @@ function edd_acquisition_methods_callback( $args ) {
 						'placeholder' => __( 'name-identifier', 'edd-acquisition-survey' )
 					) ); ?>
 				</td>
-				<td><span class="edd-acq-remove-method button-secondary"><?php _e( 'Remove Method', 'edd-acquisition-survey' ); ?></span></td>
+				<td><span class="edd-acq-remove-method button-secondary"><?php _e( 'Remove', 'edd-acquisition-survey' ); ?></span></td>
 			</tr>
 		<?php endif; ?>
 	</table>
@@ -144,9 +144,16 @@ function edd_acq_save_methods( $input ) {
 
 	$new_methods = ! empty( $_POST['edd_acq_methods'] ) ? array_values( $_POST['edd_acq_methods'] ) : array();
 
+	$saved_methods = array();
 	foreach ( $new_methods as $key => $method ) {
 		if ( empty( $method['name'] ) && empty( $method['value'] ) ) {
 			unset( $new_methods[$key] );
+		}
+
+		if ( ! in_array( $method['value'], $saved_methods ) ) {
+			$saved_methods[] = $method['value'];
+		} else {
+			return $input;
 		}
 	}
 

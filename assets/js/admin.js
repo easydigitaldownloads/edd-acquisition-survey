@@ -85,7 +85,6 @@ jQuery(document).ready(function ($) {
 				if ( current_value.length == 0 ) {
 					var found_names = 0;
 					$('#edd-acquisition-methods tbody').find( '.edd-acq-value input').each(function() {
-						alert( $(this).val());
 						if ( $(this).val() == name ) {
 							found_names++;
 						}
