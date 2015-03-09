@@ -97,6 +97,8 @@ add_action( 'edd_checkout_error_checks', 'edd_acq_validate_custom_fields', 10, 2
 function edd_acq_store_custom_fields( $payment, $payment_data ) {
 
 	$acquisition_method = isset( $_POST['edd_acquisition_method'] ) ? sanitize_text_field( $_POST['edd_acquisition_method'] ) : '';
+
+	$acquisition_method = apply_filters( 'edd_acq_record_acquisition_method', $acquisition_method, $payment, $payment_data );
 	if ( ! empty( $acquisition_method ) && -1 != $acquisition_method ) {
 		update_post_meta( $payment, '_edd_payment_acquisition_method', $acquisition_method );
 	}
@@ -118,7 +120,7 @@ function edd_acq_count_sales_by_method( $method ) {
 	$ids_sql = $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
 	$ids     = $wpdb->get_col( $ids_sql );
 
-	return count( $ids );
+	return apply_filters( 'edd_acq_method_sales', count( $ids ), $method );
 
 }
 
@@ -140,6 +142,6 @@ function edd_acq_count_earnings_by_method( $method ) {
 	$earnings_sql = "SELECT SUM( meta_value ) FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_total' AND post_id IN ( $ids )";
 	$earnings     = $wpdb->get_var( $earnings_sql );
 
-	return $earnings;
+	return apply_filters( 'edd_acq_method_earnings', $earnings, $method );
 
 }
