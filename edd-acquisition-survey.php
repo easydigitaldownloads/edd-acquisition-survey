@@ -3,7 +3,7 @@
  * Plugin Name:     Easy Digital Downloads - Acquisition Survey
  * Plugin URI:      https://easydigitaldownloads.com/extensions/acquisition-survey
  * Description:     Get feedback and statistics about where your customers are hearing about your site
- * Version:         1.0.0
+ * Version:         1.0
  * Author:          Chris Klosowski
  * Author URI:      https://easydigitaldownloads.com
  * Text Domain:     edd-acquisition-survey
@@ -23,13 +23,13 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 	/**
 	 * Main EDD_Acquisition_Survey class
 	 *
-	 * @since       1.0.0
+	 * @since       1.0
 	 */
 	class EDD_Acquisition_Survey {
 
 		/**
 		 * @var         EDD_Acquisition_Survey $instance The one true EDD_Acquisition_Survey
-		 * @since       1.0.0
+		 * @since       1.0
 		 */
 		private static $instance;
 
@@ -38,7 +38,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 * Get active instance
 		 *
 		 * @access      public
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      object self::$instance The one true EDD_Acquisition_Survey
 		 */
 		public static function instance() {
@@ -58,12 +58,12 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 * Setup plugin constants
 		 *
 		 * @access      private
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		private function setup_constants() {
 			// Plugin version
-			define( 'EDD_ACQUISITION_SURVEY_VER', '1.0.0' );
+			define( 'EDD_ACQUISITION_SURVEY_VER', '1.0' );
 
 			// Plugin path
 			define( 'EDD_ACQUISITION_SURVEY_DIR', plugin_dir_path( __FILE__ ) );
@@ -77,14 +77,18 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 * Include necessary files
 		 *
 		 * @access      private
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		private function includes() {
 
-			require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/settings.php';
 			require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/scripts.php';
 			require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/functions.php';
+
+			if ( is_admin() ) {
+				require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/settings.php';
+				require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/hooks.php';
+			}
 
 		}
 
@@ -93,7 +97,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 * Run action and filter hooks
 		 *
 		 * @access      private
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		private function hooks() {
@@ -112,7 +116,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 * Internationalization
 		 *
 		 * @access      public
-		 * @since       1.0.0
+		 * @since       1.0
 		 * @return      void
 		 */
 		public function load_textdomain() {
@@ -148,7 +152,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
  * The main function responsible for returning the one true EDD_Acquisition_Survey
  * instance to functions everywhere
  *
- * @since       1.0.0
+ * @since       1.0
  * @return      \EDD_Acquisition_Survey The one true EDD_Acquisition_Survey
  *
  * @todo        Inclusion of the activation code below isn't mandatory, but
@@ -178,7 +182,7 @@ add_action( 'plugins_loaded', 'edd_acquisition_survey_load' );
  * hook for compatibility, we also can't reference a function inside the plugin class
  * for the activation function. If you need an activation function, put it here.
  *
- * @since       1.0.0
+ * @since       1.0
  * @return      void
  */
 function edd_acquisition_survey_activation() {

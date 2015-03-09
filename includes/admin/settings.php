@@ -2,14 +2,21 @@
 /**
  * Admin Settings Functions
  *
- * @package     EDD\AcquisitionSurvey\Aadmin\Settings
- * @since       1.0.0
+ * @package     EDD\AcquisitionSurvey\Admin\Settings
+ * @since       1.0
  */
 
 
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Setup the settings for the Extensions tab
+ *
+ * @since  1.0
+ * @param  array $settings The existing settings
+ * @return array           The settings with ours added
+ */
 function edd_acq_settings( $settings ) {
 
 	$new_settings = array(
@@ -48,7 +55,7 @@ function edd_acq_settings( $settings ) {
  *
  * Renders Acquisition Methods table
  *
- * @since 1.6
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  * @global $edd_options Array of all the EDD Options
  * @return void
@@ -125,7 +132,7 @@ function edd_acquisition_methods_callback( $args ) {
  * Adds a settings error (for the updated message)
  * This also saves the acquisition methods table
  *
- * @since 1.6
+ * @since 1.0
  * @param array $input The value inputted in the field
  * @return string $input Sanitizied value
  */

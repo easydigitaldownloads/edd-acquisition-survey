@@ -3,7 +3,7 @@
  * Scripts
  *
  * @package     EDD\AcquisitionSurvey\Scripts
- * @since       1.0.0
+ * @since       1.0
  */
 
 
@@ -14,7 +14,7 @@ if( !defined( 'ABSPATH' ) ) exit;
 /**
  * Load admin scripts
  *
- * @since       1.0.0
+ * @since       1.0
  * @global      array $edd_settings_page The slug for the EDD settings page
  * @global      string $post_type The type of post that we are editing
  * @return      void
@@ -40,7 +40,7 @@ add_action( 'admin_enqueue_scripts', 'edd_acquisition_survey_admin_scripts', 100
 /**
  * Load frontend scripts
  *
- * @since       1.0.0
+ * @since       1.0
  * @return      void
  */
 function edd_acquisition_survey_scripts( $hook ) {

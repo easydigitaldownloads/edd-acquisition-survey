@@ -6,7 +6,7 @@
  * @subpackage  Admin/Reports
  * @copyright   Copyright (c) 2015, Chris Klosowski
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.5
+ * @since       1.0
  */
 
 // Exit if accessed directly
@@ -18,17 +18,17 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 /**
- * EDD_Gateawy_Reports_Table Class
+ * EDD_Acquisition_Reports_Table Class
  *
  * Renders the Download Reports table
  *
- * @since 1.5
+ * @since 1.0
  */
 class EDD_Acquisition_Reports_Table extends WP_List_Table {
 
 	/**
 	 * @var int Number of items per page
-	 * @since 1.5
+	 * @since 1.0
 	 */
 	public $per_page = 30;
 
@@ -36,7 +36,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	/**
 	 * Get things started
 	 *
-	 * @since 1.5
+	 * @since 1.0
 	 * @see WP_List_Table::__construct()
 	 */
 	public function __construct() {
@@ -55,7 +55,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 * This function renders most of the columns in the list table.
 	 *
 	 * @access public
-	 * @since 1.5
+	 * @since 1.0
 	 *
 	 * @param array $item Contains all the data of the downloads
 	 * @param string $column_name The name of the column
@@ -70,7 +70,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 * Retrieve the table columns
 	 *
 	 * @access public
-	 * @since 1.5
+	 * @since 1.0
 	 * @return array $columns Array of all the list table columns
 	 */
 	public function get_columns() {
@@ -88,7 +88,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 * Retrieve the current page number
 	 *
 	 * @access public
-	 * @since 1.5
+	 * @since 1.0
 	 * @return int Current page number
 	 */
 	public function get_paged() {
@@ -100,7 +100,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 * Outputs the reporting views
 	 *
 	 * @access public
-	 * @since 1.5
+	 * @since 1.0
 	 * @return void
 	 */
 	public function bulk_actions( $which = '' ) {
@@ -113,7 +113,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 * Build all the reports data
 	 *
 	 * @access public
-	 * @since 1.5
+	 * @since 1.0
 	 * @return array $reports_data All the data for customer reports
 	 */
 	public function reports_data() {
@@ -160,10 +160,10 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 * Setup the final data for the table
 	 *
 	 * @access public
-	 * @since 1.5
-	 * @uses EDD_Gateawy_Reports_Table::get_columns()
-	 * @uses EDD_Gateawy_Reports_Table::get_sortable_columns()
-	 * @uses EDD_Gateawy_Reports_Table::reports_data()
+	 * @since 1.0
+	 * @uses EDD_Acquisition_Reports_Table::get_columns()
+	 * @uses EDD_Acquisition_Reports_Table::get_sortable_columns()
+	 * @uses EDD_Acquisition_Reports_Table::reports_data()
 	 * @return void
 	 */
 	public function prepare_items() {
