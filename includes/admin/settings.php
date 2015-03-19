@@ -70,8 +70,8 @@ function edd_acquisition_methods_callback( $args ) {
 		<thead>
 			<tr>
 				<th scope="col" class="edd-acq-drag"></th>
-				<th scope="col" class="edd-acq-name"><?php _e( 'Name', 'edd-acquisition-survey' ); ?></th>
-				<th scope="col" class="edd-acq-value"><?php _e( 'Value', 'edd-acquisition-survey' ); ?></th>
+				<th scope="col" class="edd-acq-name"><?php _e( 'Method Name', 'edd-acquisition-survey' ); ?></th>
+				<th scope="col" class="edd-acq-value"><?php _e( 'Unique ID', 'edd-acquisition-survey' ); ?></th>
 				<th scope="col" class="edd-acq-remove"></th>
 			</tr>
 		</thead>
