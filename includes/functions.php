@@ -27,6 +27,13 @@ function edd_acq_get_methods() {
  * @return void
  */
 function edd_acq_custom_checkout_fields() {
+	static $has_displayed = NULL;
+
+	// Make sure we don't display more than once.
+	if ( NULL !== $has_displayed ) {
+		return;
+	}
+
 	$methods  = edd_acq_get_methods();
 	$title    = edd_get_option( 'acq_survey_title', __( 'How did you hear about us?', 'edd-acquisition-survey' ) );
 	$required = edd_get_option( 'acq_require_response', false );
@@ -59,6 +66,8 @@ function edd_acq_custom_checkout_fields() {
 		?>
 	</p>
 	<?php
+
+	$has_displayed = true;
 }
 add_action('edd_purchase_form_user_info', 'edd_acq_custom_checkout_fields');
 
