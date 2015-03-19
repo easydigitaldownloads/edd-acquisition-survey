@@ -63,13 +63,24 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 */
 		private function setup_constants() {
 			// Plugin version
-			define( 'EDD_ACQUISITION_SURVEY_VER', '1.0' );
+			if ( ! defined( 'EDD_ACQUISITION_SURVEY_VER' ) ) {
+				define( 'EDD_ACQUISITION_SURVEY_VER', '1.0' );
+			}
 
 			// Plugin path
-			define( 'EDD_ACQUISITION_SURVEY_DIR', plugin_dir_path( __FILE__ ) );
+			if ( ! defined( 'EDD_ACQUISITION_SURVEY_DIR' ) ) {
+				define( 'EDD_ACQUISITION_SURVEY_DIR', plugin_dir_path( __FILE__ ) );
+			}
 
 			// Plugin URL
-			define( 'EDD_ACQUISITION_SURVEY_URL', plugin_dir_url( __FILE__ ) );
+			if ( ! defined( 'EDD_ACQUISITION_SURVEY_URL' ) ) {
+				define( 'EDD_ACQUISITION_SURVEY_URL', plugin_dir_url( __FILE__ ) );
+			}
+
+			// Plugin Root File
+			if ( ! defined( 'EDD_ACQUISITION_SURVEY_FILE' ) ) {
+				define( 'EDD_ACQUISITION_SURVEY_FILE', __FILE__ );
+			}
 		}
 
 
@@ -101,6 +112,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		 * @return      void
 		 */
 		private function hooks() {
+
 			// Register settings
 			add_filter( 'edd_settings_extensions', 'edd_acq_settings', 1 );
 
@@ -109,6 +121,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 			if( class_exists( 'EDD_License' ) ) {
 				$license = new EDD_License( __FILE__, 'Acquisition Survey', EDD_ACQUISITION_SURVEY_VER, 'Chris Klosowski' );
 			}
+
 		}
 
 
@@ -145,6 +158,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		}
 
 	}
+
 } // End if class_exists check
 
 
@@ -186,6 +200,21 @@ add_action( 'plugins_loaded', 'edd_acquisition_survey_load' );
  * @return      void
  */
 function edd_acquisition_survey_activation() {
-	/* Activation functions here */
+	$current_methods = get_option( 'edd_acq_methods', array() );
+
+	if ( ! empty( $current_methods ) ) {
+		return;
+	}
+
+	$methods = array();
+	$methods[] = array( 'name' => 'Google'       , 'value' => 'google' );
+	$methods[] = array( 'name' => 'Twitter'      , 'value' => 'twitter' );
+	$methods[] = array( 'name' => 'Facebook Page', 'value' => 'facebook-page' );
+	$methods[] = array( 'name' => 'Facebook Ads' , 'value' => 'facebook-ads' );
+	$methods[] = array( 'name' => 'Friend'       , 'value' => 'friends' );
+	$methods[] = array( 'name' => 'Online Ads'   , 'value' => 'online-ads' );
+	$methods[] = array( 'name' => 'Other'        , 'value' => 'other' );
+
+	add_option( 'edd_acq_methods', $methods, '', 'no' );
 }
 register_activation_hook( __FILE__, 'edd_acquisition_survey_activation' );
