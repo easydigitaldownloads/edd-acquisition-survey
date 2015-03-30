@@ -148,7 +148,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 			$reports_data[] = array(
 				'name'     => $acquisition_name,
 				'sales'    => edd_format_amount( $sales, false ),
-				'earnings' => edd_currency_filter( $earnings ),
+				'earnings' => edd_currency_filter( edd_format_amount( $earnings ) ),
 			);
 		}
 
