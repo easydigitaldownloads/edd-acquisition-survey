@@ -35,19 +35,3 @@ function edd_acquisition_survey_admin_scripts( $hook ) {
 	}
 }
 add_action( 'admin_enqueue_scripts', 'edd_acquisition_survey_admin_scripts', 100 );
-
-
-/**
- * Load frontend scripts
- *
- * @since       1.0
- * @return      void
- */
-function edd_acquisition_survey_scripts( $hook ) {
-	// Use minified libraries if SCRIPT_DEBUG is turned off
-	$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-
-	wp_enqueue_script( 'edd_acquisition_survey_js', EDD_ACQUISITION_SURVEY_URL . '/assets/js/scripts' . $suffix . '.js', array( 'jquery' ) );
-	wp_enqueue_style( 'edd_acquisition_survey_css', EDD_ACQUISITION_SURVEY_URL . '/assets/css/styles' . $suffix . '.css' );
-}
-add_action( 'wp_enqueue_scripts', 'edd_acquisition_survey_scripts' );
