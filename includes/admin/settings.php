@@ -11,6 +11,20 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Register the subsection for EDD 2.5 settings
+ *
+ * @since  1.0.2
+ * @param  array $sections The array of subsections
+ * @return array           Array of subsections with Acquisition Survey added
+ */
+function edd_acq_settings_section( $sections ) {
+	$sections['acquisition-survey'] = __( 'Acquisition Survey', 'edd-acquisition-survey' );
+
+	return $sections;
+}
+add_filter( 'edd_settings_sections_extensions', 'edd_acq_settings_section', 10, 1 );
+
+/**
  * Setup the settings for the Extensions tab
  *
  * @since  1.0
@@ -46,6 +60,10 @@ function edd_acq_settings( $settings ) {
 			'type' => 'acquisition_methods'
 		),
 	);
+
+	if ( version_compare( EDD_VERSION, 2.5, '>=' ) ) {
+		$new_settings = array( 'acquisition-survey' => $new_settings );
+	}
 
 	return array_merge( $settings, $new_settings );
 }
@@ -139,6 +157,11 @@ function edd_acquisition_methods_callback( $args ) {
 function edd_acq_save_methods( $input ) {
 
 	if( ! current_user_can( 'manage_shop_settings' ) ) {
+		return $input;
+	}
+
+	// If our acquisition methods are in the POST, move along.
+	if ( ! array_key_exists( 'edd_acq_methods', $_POST ) ) {
 		return $input;
 	}
 
