@@ -36,26 +36,26 @@ function edd_acq_settings( $settings ) {
 	$new_settings = array(
 		array(
 			'id'    => 'edd_Acquisition_Survey_settings',
-			'name'  => '<strong>' . __( 'Acquisition Survey Settings', 'edd-acquisition-survey' ) . '</strong>',
+			'name'  => __( 'Acquisition Survey Settings', 'edd-acquisition-survey' ),
 			'desc'  => __( 'Configure Acquisition Survey Settings', 'edd-acquisition-survey' ),
 			'type'  => 'header',
 		),
 		'acq_survey_title' => array(
 			'id'   => 'acq_survey_title',
-			'name' => '<strong>' . __( 'Survey Title', 'edd-acquisition-survey' ) . '</strong>',
+			'name' => __( 'Survey Title', 'edd-acquisition-survey' ),
 			'desc' => __( 'The heading for the survey', 'edd-acquisition-survey' ),
 			'type' => 'text',
 			'std'  => __( 'How did you hear about us?', 'edd-acquisition-survey' )
 		),
 		'acq_require_response' => array(
 			'id'   => 'acq_require_response',
-			'name' => '<strong>' . __( 'Require survey response', 'edd-acquisition-survey' ),
+			'name' => __( 'Require survey response', 'edd-acquisition-survey' ),
 			'desc' => __( 'When checked, the user must complete this field to complete the purchase', 'edd-acquisition-survey' ),
 			'type' => 'checkbox'
 		),
 		'acquisition_methods' => array(
 			'id'   => 'acquision_methods',
-			'name' => '<strong>' . __( 'Acquisition Methods', 'edd-acquisition-survey' ) . '</strong>',
+			'name' => __( 'Acquisition Methods', 'edd-acquisition-survey' ),
 			'desc' => __( 'Define the options presented to customers.', 'edd-acquisition-survey' ),
 			'type' => 'acquisition_methods'
 		),
