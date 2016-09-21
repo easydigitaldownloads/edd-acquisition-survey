@@ -95,9 +95,9 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 
 			require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/scripts.php';
 			require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/functions.php';
+			require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/settings.php';
 
 			if ( is_admin() ) {
-				require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/settings.php';
 				require_once EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/hooks.php';
 			}
 
