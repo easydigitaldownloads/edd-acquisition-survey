@@ -108,8 +108,11 @@ function edd_acq_store_custom_fields( $payment, $payment_data ) {
 	$acquisition_method = isset( $_POST['edd_acquisition_method'] ) ? sanitize_text_field( $_POST['edd_acquisition_method'] ) : '';
 
 	$acquisition_method = apply_filters( 'edd_acq_record_acquisition_method', $acquisition_method, $payment, $payment_data );
-	if ( ! empty( $acquisition_method ) && -1 != $acquisition_method ) {
-		update_post_meta( $payment, '_edd_payment_acquisition_method', $acquisition_method );
+
+	$payment = edd_get_payment( $payment );
+
+	if ( $payment && ! empty( $acquisition_method ) && -1 != $acquisition_method ) {
+		$payment->update_meta( '_edd_payment_acquisition_method', $acquisition_method );
 	}
 
 }
