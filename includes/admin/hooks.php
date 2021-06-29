@@ -20,7 +20,6 @@ function edd_acq_add_reports_item( $reports ) {
 
 	return $reports;
 }
-add_filter( 'edd_report_views', 'edd_acq_add_reports_item', 10, 1 );
 
 /**
  * Renders the Acquisition Table
@@ -40,7 +39,50 @@ function edd_reports_acquisition_table() {
 	$downloads_table->prepare_items();
 	$downloads_table->display();
 }
-add_action( 'edd_reports_view_acquisition', 'edd_reports_acquisition_table' );
+
+/**
+ * Registers the Acquisition report.
+ *
+ * @since 1.0.3
+ *
+ * @param \EDD\Reports\Data\Report_Registry $reports Report registry.
+ * @return void
+ */
+function edd_acq_register_acquisition_report( $reports ) {
+	try {
+		$reports->add_report( 'acquisition', array(
+			'label'     => __( 'Acquisition', 'edd-acquisition-survey' ),
+			'icon'      => 'chart-area',
+			'priority'  => 45,
+			'endpoints' => array(
+				'tables' => array( 'acquisition_report' ),
+			),
+			'filters'   => array(),
+		) );
+
+		$reports->register_endpoint( 'acquisition_report', array(
+			'label' => __( 'Acquisition Methods', 'edd-acquisition-survey' ),
+			'views' => array(
+				'table' => array(
+					'display_args' => array(
+						'class_name' => 'EDD_Acquisition_Reports_Table',
+						'class_file' => EDD_ACQUISITION_SURVEY_DIR . 'includes/admin/class-acquisition-reports-table.php',
+					),
+				),
+			),
+		) );
+	} catch ( \EDD_Exception $exception ) {
+		edd_debug_log_exception( $exception );
+	}
+}
+
+if ( version_compare( EDD_VERSION, 3.0, '>=' ) ) {
+	add_action( 'edd_reports_init', 'edd_acq_register_acquisition_report' );
+} else {
+	add_filter( 'edd_report_views', 'edd_acq_add_reports_item', 10, 1 );
+	add_action( 'edd_reports_view_acquisition', 'edd_reports_acquisition_table' );
+}
+
 
 /**
  * Shows the acquisition method on the payment details in admin
