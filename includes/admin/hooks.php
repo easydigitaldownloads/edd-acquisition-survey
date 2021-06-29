@@ -76,7 +76,7 @@ function edd_acq_register_acquisition_report( $reports ) {
 	}
 }
 
-if ( version_compare( EDD_VERSION, 3.0, '>=' ) ) {
+if ( function_exists( 'edd_get_orders' ) ) {
 	add_action( 'edd_reports_init', 'edd_acq_register_acquisition_report' );
 } else {
 	add_filter( 'edd_report_views', 'edd_acq_add_reports_item', 10, 1 );

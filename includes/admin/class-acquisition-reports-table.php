@@ -105,9 +105,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 	 */
 	public function bulk_actions( $which = '' ) {
 		// These aren't really bulk actions but this outputs the markup in the right place
-		if ( version_compare( EDD_VERSION, 3.0, '>=' ) ) {
-			return array();
-		} else {
+		if ( ! function_exists( 'edd_get_orders' ) ) {
 			edd_report_views();
 		}
 	}
@@ -126,7 +124,7 @@ class EDD_Acquisition_Reports_Table extends WP_List_Table {
 		$reports_data = array();
 		$methods      = edd_acq_get_methods();
 
-		if ( version_compare( EDD_VERSION, 3.0, '>=' ) ) {
+		if ( function_exists( 'edd_get_orders' ) ) {
 			$sql = "SELECT DISTINCT( meta_value ) as value FROM $wpdb->edd_ordermeta WHERE meta_key = '_edd_payment_acquisition_method'";
 		} else  {
 			$sql = "SELECT DISTINCT( meta_value ) as value FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_acquisition_method'";

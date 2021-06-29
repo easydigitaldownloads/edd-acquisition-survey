@@ -146,7 +146,7 @@ function edd_acq_count_earnings_by_method( $method ) {
 
 	$ids = edd_acq_get_sales_ids_by_method( $method );
 
-	if ( version_compare( EDD_VERSION, 3.0, '>=' ) ) {
+	if ( function_exists( 'edd_get_orders' ) ) {
 		$earnings = 0;
 
 		// Based on calculation in EDD_Payment_Stats::get_earnings().
@@ -180,7 +180,7 @@ function edd_acq_get_sales_ids_by_method( $method ) {
 
 	global $wpdb;
 
-	if ( version_compare( EDD_VERSION, 3.0, '>=' ) ) {
+	if ( function_exists( 'edd_get_orders' ) ) {
 		$ids_sql = $wpdb->prepare( "SELECT edd_order_id FROM $wpdb->edd_ordermeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
 	} else {
 		$ids_sql = $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
