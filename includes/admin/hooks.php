@@ -52,7 +52,7 @@ function edd_acq_register_acquisition_report( $reports ) {
 	try {
 		$reports->add_report( 'acquisition', array(
 			'label'     => __( 'Acquisition', 'edd-acquisition-survey' ),
-			'icon'      => 'chart-area',
+			'icon'      => 'share-alt',
 			'priority'  => 45,
 			'endpoints' => array(
 				'tables' => array( 'acquisition_report' ),
