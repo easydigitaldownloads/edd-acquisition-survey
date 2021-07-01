@@ -151,7 +151,7 @@ function edd_acquisition_methods_callback( $args ) {
  *
  * @since 1.0
  * @param array $input The value inputted in the field
- * @return array $input Array of sanitizied values
+ * @return array $input Array of sanitized values
  */
 function edd_acq_save_methods( $input ) {
 
