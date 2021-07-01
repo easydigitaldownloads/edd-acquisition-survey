@@ -168,13 +168,15 @@ function edd_acq_save_methods( $input ) {
 
 	$sanitized_methods = array();
 	foreach ( $new_methods as $method ) {
-		if ( empty( $method['name'] ) && empty( $method['value'] ) ) {
+		if ( empty( $method['name'] ) ) {
 			continue;
 		}
 
+		$new_value = ! empty( $method['value'] ) ? $method['value'] : $method['name'];
+
 		$sanitized_methods[] = array(
 			'name' => sanitize_text_field( wp_unslash( $method['name'] ) ),
-			'value' => sanitize_key( $method['value'] )
+			'value' => sanitize_title_with_dashes( $new_value )
 		);
 	}
 
