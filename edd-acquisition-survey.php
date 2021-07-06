@@ -3,7 +3,7 @@
  * Plugin Name:     Easy Digital Downloads - Acquisition Survey
  * Plugin URI:      https://easydigitaldownloads.com/downloads/acquisition-survey
  * Description:     Get feedback and statistics about where your customers are hearing about your site
- * Version:         1.0.2
+ * Version:         1.0.3
  * Author:          Sandhills Development, LLC
  * Author URI:      https://sandhillsdev.com
  * Text Domain:     edd-acquisition-survey
@@ -64,7 +64,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		private function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EDD_ACQUISITION_SURVEY_VER' ) ) {
-				define( 'EDD_ACQUISITION_SURVEY_VER', '1.0.2' );
+				define( 'EDD_ACQUISITION_SURVEY_VER', '1.0.3' );
 			}
 
 			// Plugin path
