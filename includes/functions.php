@@ -108,8 +108,11 @@ function edd_acq_store_custom_fields( $payment, $payment_data ) {
 	$acquisition_method = isset( $_POST['edd_acquisition_method'] ) ? sanitize_text_field( $_POST['edd_acquisition_method'] ) : '';
 
 	$acquisition_method = apply_filters( 'edd_acq_record_acquisition_method', $acquisition_method, $payment, $payment_data );
-	if ( ! empty( $acquisition_method ) && -1 != $acquisition_method ) {
-		update_post_meta( $payment, '_edd_payment_acquisition_method', $acquisition_method );
+
+	$payment = edd_get_payment( $payment );
+
+	if ( $payment && ! empty( $acquisition_method ) && -1 != $acquisition_method ) {
+		$payment->update_meta( '_edd_payment_acquisition_method', $acquisition_method );
 	}
 
 }
@@ -124,10 +127,7 @@ add_action( 'edd_insert_payment', 'edd_acq_store_custom_fields', 10, 2 );
  */
 function edd_acq_count_sales_by_method( $method ) {
 
-	global $wpdb;
-
-	$ids_sql = $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
-	$ids     = $wpdb->get_col( $ids_sql );
+	$ids = edd_acq_get_sales_ids_by_method( $method );
 
 	return apply_filters( 'edd_acq_method_sales', count( $ids ), $method );
 
@@ -144,13 +144,38 @@ function edd_acq_count_earnings_by_method( $method ) {
 
 	global $wpdb;
 
-	$ids_sql = $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
-	$ids     = $wpdb->get_col( $ids_sql );
-	$ids     = "'" . implode( "', '", $ids ) . "'";
+	$ids = array_map( 'intval', edd_acq_get_sales_ids_by_method( $method ) );
+	$ids = "'" . implode( "', '", $ids ) . "'";
 
-	$earnings_sql = "SELECT SUM( meta_value ) FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_total' AND post_id IN ( $ids )";
-	$earnings     = $wpdb->get_var( $earnings_sql );
+	if ( function_exists( 'edd_get_orders' ) ) {
+		$earnings_sql = "SELECT SUM( total ) FROM {$wpdb->edd_orders} WHERE id IN( {$ids} )";
+	} else {
+		$earnings_sql = "SELECT SUM( meta_value ) FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_total' AND post_id IN ( $ids )";
+	}
+
+	$earnings = $wpdb->get_var( $earnings_sql );
 
 	return apply_filters( 'edd_acq_method_earnings', $earnings, $method );
+
+}
+
+/**
+ * Given an acquisition method shortname, get all sales IDs.
+ *
+ * @since  1.0.3
+ * @param  string $method The method shortname (value).
+ * @return array          An array of IDs of sales for given method.
+ */
+function edd_acq_get_sales_ids_by_method( $method ) {
+
+	global $wpdb;
+
+	if ( function_exists( 'edd_get_orders' ) ) {
+		$ids_sql = $wpdb->prepare( "SELECT edd_order_id FROM $wpdb->edd_ordermeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
+	} else {
+		$ids_sql = $wpdb->prepare( "SELECT post_id FROM $wpdb->postmeta WHERE meta_key = '_edd_payment_acquisition_method' AND meta_value = %s", $method );
+	}
+
+	return $wpdb->get_col( $ids_sql );
 
 }

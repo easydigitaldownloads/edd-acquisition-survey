@@ -147,40 +147,44 @@ function edd_acquisition_methods_callback( $args ) {
 /**
  * Acquisition Methods Sanitization
  *
- * Adds a settings error (for the updated message)
  * This also saves the acquisition methods table
  *
  * @since 1.0
  * @param array $input The value inputted in the field
- * @return string $input Sanitizied value
+ * @return array $input Array of sanitized values
  */
 function edd_acq_save_methods( $input ) {
 
-	if( ! current_user_can( 'manage_shop_settings' ) ) {
+	if ( ! current_user_can( 'manage_shop_settings' ) ) {
 		return $input;
 	}
 
-	// If our acquisition methods are in the POST, move along.
+	// If our acquisition methods aren't in the POST, move along.
 	if ( ! array_key_exists( 'edd_acq_methods', $_POST ) ) {
 		return $input;
 	}
 
 	$new_methods = ! empty( $_POST['edd_acq_methods'] ) ? array_values( $_POST['edd_acq_methods'] ) : array();
 
-	$saved_methods = array();
-	foreach ( $new_methods as $key => $method ) {
-		if ( empty( $method['name'] ) && empty( $method['value'] ) ) {
-			unset( $new_methods[$key] );
+	$sanitized_methods = array();
+	foreach ( $new_methods as $method ) {
+		if ( empty( $method['name'] ) ) {
+			continue;
 		}
 
-		if ( ! in_array( $method['value'], $saved_methods ) ) {
-			$saved_methods[] = $method['value'];
-		} else {
-			return $input;
-		}
+		$new_value = ! empty( $method['value'] ) ? $method['value'] : $method['name'];
+
+		$sanitized_methods[] = array(
+			'name' => sanitize_text_field( wp_unslash( $method['name'] ) ),
+			'value' => sanitize_title_with_dashes( $new_value )
+		);
 	}
 
-	update_option( 'edd_acq_methods', $new_methods );
+	if ( ! empty( $sanitized_methods ) ) {
+		update_option( 'edd_acq_methods', $sanitized_methods );
+	} else {
+		delete_option( 'edd_acq_methods' );
+	}
 
 	return $input;
 }

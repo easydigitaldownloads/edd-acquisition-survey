@@ -1,146 +1,123 @@
-# Copyright (C) 2015 Chris Klosowski
-# This file is distributed under the same license as the Easy Digital Downloads - Acquisition Survey package.
+# Copyright (C) 2021 Sandhills Development, LLC
+# This file is distributed under the same license as the Easy Digital Downloads - Acquisition Survey plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Digital Downloads - Acquisition Survey 1.0\n"
-"Report-Msgid-Bugs-To: Chris Klosowski <hello@chriscct7.com>\n"
-"POT-Creation-Date: 2015-04-01 14:36:13+00:00\n"
+"Project-Id-Version: Easy Digital Downloads - Acquisition Survey 1.0.3\n"
+"Report-Msgid-Bugs-To: https://easydigitaldownloads.com/support\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Chris Klosowski <hello@chriscct7.com>\n"
-"Language-Team: Easy Digital Downloads <support@easydigitaldownloads.com>\n"
-"X-Generator: grunt-wp-i18n 0.5.1\n"
-"X-Poedit-KeywordsList: "
-"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
-"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
-"Language: en_US\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Country: United States\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-Bookmarks: \n"
-"X-Textdomain-Support: yes\n"
+"POT-Creation-Date: 2021-07-06T15:13:25+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.5.0\n"
+"X-Domain: edd-acquisition-survey\n"
 
-#: includes/admin/class-acquisition-reports-table.php:47
-msgid "Acquisition Method"
+#. Plugin Name of the plugin
+msgid "Easy Digital Downloads - Acquisition Survey"
 msgstr ""
 
-#: includes/admin/class-acquisition-reports-table.php:48
-#: includes/admin/settings.php:44
-msgid "Acquisition Methods"
+#. Plugin URI of the plugin
+msgid "https://easydigitaldownloads.com/downloads/acquisition-survey"
 msgstr ""
 
-#: includes/admin/class-acquisition-reports-table.php:78
-msgid "Method"
+#. Description of the plugin
+msgid "Get feedback and statistics about where your customers are hearing about your site"
 msgstr ""
 
-#: includes/admin/class-acquisition-reports-table.php:79
-msgid "Sales"
+#. Author of the plugin
+msgid "Sandhills Development, LLC"
 msgstr ""
 
-#: includes/admin/class-acquisition-reports-table.php:80
-msgid "Earnings"
+#. Author URI of the plugin
+msgid "https://sandhillsdev.com"
 msgstr ""
 
-#: includes/admin/class-acquisition-reports-table.php:142
-#: includes/admin/hooks.php:64
+#: includes/admin/class-acquisition-reports-table.php:149
+#: includes/admin/hooks.php:106
 msgid "inactive"
 msgstr ""
 
 #: includes/admin/hooks.php:19
+#: includes/admin/hooks.php:54
 msgid "Acquisition"
 msgstr ""
 
-#: includes/admin/hooks.php:69
+#: includes/admin/hooks.php:64
+#: includes/admin/settings.php:58
+msgid "Acquisition Methods"
+msgstr ""
+
+#: includes/admin/hooks.php:111
 msgid "Acquisition:"
 msgstr ""
 
-#: includes/admin/settings.php:25
-msgid "Acquisition Survey Settings"
-msgstr ""
-
-#: includes/admin/settings.php:26
-msgid "Configure Acquisition Survey Settings"
-msgstr ""
-
-#: includes/admin/settings.php:31
-msgid "Survey Title"
-msgstr ""
-
-#: includes/admin/settings.php:32
-msgid "The heading for the survey"
-msgstr ""
-
-#: includes/admin/settings.php:34 includes/functions.php:38
-msgid "How did you hear about us?"
-msgstr ""
-
-#: includes/admin/settings.php:38
-msgid "Require survey response"
+#: includes/admin/settings.php:21
+msgid "Acquisition Survey"
 msgstr ""
 
 #: includes/admin/settings.php:39
-msgid "When checked, the user must complete this field to complete the purchase"
+msgid "Acquisition Survey Settings"
+msgstr ""
+
+#: includes/admin/settings.php:40
+msgid "Configure Acquisition Survey Settings"
 msgstr ""
 
 #: includes/admin/settings.php:45
+msgid "Survey Title"
+msgstr ""
+
+#: includes/admin/settings.php:46
+msgid "The heading for the survey"
+msgstr ""
+
+#: includes/admin/settings.php:48
+#: includes/functions.php:38
+msgid "How did you hear about us?"
+msgstr ""
+
+#: includes/admin/settings.php:52
+msgid "Require survey response"
+msgstr ""
+
+#: includes/admin/settings.php:53
+msgid "When checked, the user must complete this field to complete the purchase"
+msgstr ""
+
+#: includes/admin/settings.php:59
 msgid "Define the options presented to customers."
 msgstr ""
 
-#: includes/admin/settings.php:73
+#: includes/admin/settings.php:91
 msgid "Method Name"
 msgstr ""
 
-#: includes/admin/settings.php:74
+#: includes/admin/settings.php:92
 msgid "Unique ID"
 msgstr ""
 
-#: includes/admin/settings.php:88 includes/admin/settings.php:109
+#: includes/admin/settings.php:106
+#: includes/admin/settings.php:127
 msgid "Name visible to Customers"
 msgstr ""
 
-#: includes/admin/settings.php:95 includes/admin/settings.php:115
+#: includes/admin/settings.php:113
+#: includes/admin/settings.php:133
 msgid "name-identifier"
 msgstr ""
 
-#: includes/admin/settings.php:98 includes/admin/settings.php:118
+#: includes/admin/settings.php:116
+#: includes/admin/settings.php:136
 msgid "Remove"
-msgstr ""
-
-#: includes/admin/settings.php:123
-msgid "Add Method"
-msgstr ""
-
-#: includes/class.extension-activation.php:47
-msgid "This plugin"
-msgstr ""
-
-#: includes/class.extension-activation.php:84
-msgid "activate it"
-msgstr ""
-
-#: includes/class.extension-activation.php:87
-msgid "install it"
-msgstr ""
-
-#: includes/class.extension-activation.php:90
-msgid " requires Easy Digital Downloads! Please %s to continue!"
-msgstr ""
-
-#: includes/functions.php:92
-msgid "Please tell us how you found us."
-msgstr ""
-
-#. Description of the plugin/theme
-msgid ""
-"Get feedback and statistics about where your customers are hearing about "
-"your site"
 msgstr ""
 
 #: includes/functions.php:60
 msgctxt "no dropdown items"
 msgid "Select One"
+msgstr ""
+
+#: includes/functions.php:92
+msgid "Please tell us how you found us."
 msgstr ""

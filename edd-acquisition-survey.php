@@ -1,16 +1,16 @@
 <?php
 /**
  * Plugin Name:     Easy Digital Downloads - Acquisition Survey
- * Plugin URI:      https://easydigitaldownloads.com/extensions/acquisition-survey
+ * Plugin URI:      https://easydigitaldownloads.com/downloads/acquisition-survey
  * Description:     Get feedback and statistics about where your customers are hearing about your site
- * Version:         1.0.2
- * Author:          Chris Klosowski
- * Author URI:      https://easydigitaldownloads.com
+ * Version:         1.0.3
+ * Author:          Sandhills Development, LLC
+ * Author URI:      https://sandhillsdev.com
  * Text Domain:     edd-acquisition-survey
  *
  * @package         EDD\AcquisitionSurvey
- * @author          Chris Klosowski
- * @copyright       Copyright (c) 2015
+ * @author          Sandhills Development, LLC
+ * @copyright       Copyright (c) 2021
  *
  */
 
@@ -64,7 +64,7 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 		private function setup_constants() {
 			// Plugin version
 			if ( ! defined( 'EDD_ACQUISITION_SURVEY_VER' ) ) {
-				define( 'EDD_ACQUISITION_SURVEY_VER', '1.0.2' );
+				define( 'EDD_ACQUISITION_SURVEY_VER', '1.0.3' );
 			}
 
 			// Plugin path
@@ -118,8 +118,8 @@ if( !class_exists( 'EDD_Acquisition_Survey' ) ) {
 
 			// Handle licensing
 			// @todo        Replace the Acquisition Survey and Your Name with your data
-			if( class_exists( 'EDD_License' ) ) {
-				$license = new EDD_License( __FILE__, 'Acquisition Survey', EDD_ACQUISITION_SURVEY_VER, 'Chris Klosowski' );
+			if ( class_exists( 'EDD_License' ) ) {
+				$license = new EDD_License( __FILE__, 'Acquisition Survey', EDD_ACQUISITION_SURVEY_VER, 'Sandhills Development, LLC', null, null, 483834 );
 			}
 
 		}
